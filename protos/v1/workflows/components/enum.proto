@@ -1,0 +1,10 @@
+﻿syntax = "proto3";
+
+package v1.workflows.components;
+
+import "v1/workflows/components/base.proto";
+
+message Enum {
+  ComponentBase component_base = 1;
+  repeated string options = 2;
+}

@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+package v1.workflows.components;
+
+message ComponentBase {
+  int32 id = 1;
+  string name = 2;
+}
+
+message VisualComponentBase {
+  ComponentBase component_base = 1;
+}

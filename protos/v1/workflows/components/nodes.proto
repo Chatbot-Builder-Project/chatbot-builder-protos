@@ -1,0 +1,99 @@
+﻿syntax = "proto3";
+
+package v1.workflows.components;
+
+import "v1/shared/data.proto";
+import "v1/workflows/components/base.proto";
+import "v1/workflows/components/ports.proto";
+
+message NodeBase {
+  VisualComponentBase visual_component_base = 1;
+}
+
+message Node {
+  oneof node {
+    StaticNode static_node = 1;
+    InteractionNode interaction_node = 2;
+    GroupNode group_node = 3;
+    SwitchNode switch_node = 4;
+    SmartSwitchNode smart_switch_node = 5;
+    PromptNode prompt_node = 6;
+    GenerationNode generation_node = 7;
+    MemoryNode memory_node = 8;
+    KnowledgeNode knowledge_node = 9;
+    KnowledgeSearchNode knowledge_search_node = 10;
+  }
+}
+
+message StaticNode {
+  NodeBase node_base = 1;
+  v1.shared.Data data = 2;
+  v1.workflows.components.Port output_port = 3;
+}
+
+message InteractionNode {
+  NodeBase node_base = 1;
+  v1.workflows.components.TextPort text_output_port = 2;
+  v1.workflows.components.OptionPort option_output_port = 3;
+  v1.workflows.components.TextPort text_input_port = 4;
+  v1.workflows.components.OptionPort option_input_port = 5;
+  map<string, string> output_option_descriptions = 6;
+  map<string, string> input_option_descriptions = 7;
+}
+
+message GroupNode {
+  NodeBase node_base = 1;
+  repeated v1.workflows.components.Port input_ports = 2;
+  repeated v1.workflows.components.Port output_ports = 3;
+  int32 start_node_id = 4;
+  repeated int32 node_ids = 5;
+  repeated int32 data_link_ids = 6;
+  repeated int32 flow_link_ids = 7;
+}
+
+message SwitchNode {
+  NodeBase node_base = 1;
+  v1.workflows.components.OptionPort input_port = 2;
+  int32 enum_id = 3;
+  map<string, int32> option_flow_link_ids = 4;
+}
+
+message SmartSwitchNode {
+  NodeBase node_base = 1;
+  v1.workflows.components.TextPort input_port = 2;
+  int32 enum_id = 3;
+  map<string, int32> option_flow_link_ids = 4;
+  int32 fallback_flow_link_id = 5;
+}
+
+message PromptNode {
+  NodeBase node_base = 1;
+  string template = 2;
+  v1.workflows.components.TextPort output_port = 3;
+  repeated v1.workflows.components.TextPort input_ports = 4;
+}
+
+message GenerationNode {
+  NodeBase node_base = 1;
+  v1.workflows.components.TextPort input_port = 2;
+  v1.workflows.components.TextPort output_port = 3;
+  int32 memory_node_id = 4;
+}
+
+message MemoryNode {
+  NodeBase node_base = 1;
+  v1.workflows.components.TextPort system_input_port = 2;
+  v1.workflows.components.TextPort user_input_port = 3;
+}
+
+message KnowledgeNode {
+  NodeBase node_base = 1;
+  v1.workflows.components.TextPort text_input_port = 2;
+}
+
+message KnowledgeSearchNode {
+  NodeBase node_base = 1;
+  v1.workflows.components.TextPort input_port = 2;
+  repeated v1.workflows.components.TextPort output_ports = 3;
+  int32 knowledge_node_id = 4;
+}

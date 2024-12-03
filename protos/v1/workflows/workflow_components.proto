@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package v1.workflows;
+
+import "v1/workflows/components/enum.proto";
+import "v1/workflows/components/links.proto";
+import "v1/workflows/components/nodes.proto";
+
+message WorkflowComponents {
+  repeated v1.workflows.components.Node nodes = 1;
+  int32  start_node_id = 2;
+  repeated v1.workflows.components.DataLink data_links = 3;
+  repeated v1.workflows.components.FlowLink flow_links = 4;
+  repeated v1.workflows.components.Enum enums = 5;
+}

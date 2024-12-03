@@ -1,0 +1,28 @@
+﻿syntax = "proto3";
+
+package v1.workflows.components;
+
+import "v1/workflows/components/base.proto";
+
+message LinkBase {
+  VisualComponentBase visual_component_base = 1;
+}
+
+message Link {
+  oneof link {
+    DataLink data_link = 1;
+    FlowLink flow_link = 2;
+  }
+}
+
+message DataLink {
+  LinkBase link_base = 1;
+  int32 input_port_id = 2;
+  int32 output_port_id = 3;
+}
+
+message FlowLink {
+  LinkBase link_base = 1;
+  int32 input_node_id = 2;
+  int32 output_node_id = 3;
+}

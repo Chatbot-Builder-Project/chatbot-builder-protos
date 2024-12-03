@@ -1,0 +1,40 @@
+﻿syntax = "proto3";
+
+package v1.workflows.components;
+
+import "v1/shared/data.proto";
+import "v1/workflows/components/base.proto";
+
+message PortBase {
+  VisualComponentBase visual_component_base = 1;
+  int32 node_id = 2;
+  PortDirection direction = 3;
+
+  // PortDirection is can technically be removed because nodes port fields determine the direction of the ports
+  // But it can be useful in the future so its kept for convenience
+  enum PortDirection {
+    PORT_DIRECTION_UNSPECIFIED = 0;
+    INPUT = 1;
+    OUTPUT = 2;
+  }
+}
+
+message Port {
+  oneof port {
+    TextPort text_port = 1;
+    ImagePort image_port = 2;
+    OptionPort option_port = 3;
+  }
+}
+
+message TextPort {
+  PortBase port_base = 1;
+}
+
+message ImagePort {
+  PortBase port_base = 1;
+}
+
+message OptionPort {
+  PortBase port_base = 1;
+}
