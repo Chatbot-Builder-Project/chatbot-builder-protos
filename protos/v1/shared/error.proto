@@ -1,0 +1,48 @@
+﻿syntax = "proto3";
+
+package v1.shared;
+
+message Error {
+  ErrorCategory category = 1;
+  ErrorCode code = 2;
+
+  // Human-readable error message
+  string message = 3;
+
+  // Optional detailed validation errors
+  repeated ValidationError validation_errors = 4;
+
+  enum ErrorCategory {
+    UNKNOWN = 0;
+    DOMAIN_VALIDATION = 1;
+    BUSINESS_RULE_VIOLATION = 2;
+    RESOURCE_CONFLICT = 3;
+    DEPENDENCY_ERROR = 4;
+  }
+
+  enum ErrorCode {
+    UNKNOWN_ERROR = 0;
+
+    // Domain Validation Errors
+    INVALID_STATE = 100;
+    REQUIRED_FIELD_MISSING = 101;
+    INVALID_FORMAT = 102;
+
+    // Business Rule Violations
+    WORKFLOW_ALREADY_EXISTS = 200;
+    WORKFLOW_CANNOT_BE_MODIFIED = 201;
+    MAXIMUM_LIMIT_REACHED = 202;
+
+    // Resource Conflict
+    CONCURRENT_MODIFICATION = 300;
+
+    // Dependency Errors
+    DEPENDENT_RESOURCE_NOT_FOUND = 400;
+    INTEGRATION_FAILURE = 401;
+  }
+}
+
+message ValidationError {
+  string field = 1;
+  string error_message = 2;
+}
