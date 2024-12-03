@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+package v1.shared;
+
+message CreatedResponse {
+  string id = 1;
+}
+
+message UpdatedResponse {}
+
+message DeletedResponse {}

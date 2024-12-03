@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+
+package v1.shared;
+
+message PageParams {
+  int32 page_number = 1;
+  int32 page_size = 2;
+}
+
+message PageResponseMeta {
+  int32 total_count = 1;
+}
