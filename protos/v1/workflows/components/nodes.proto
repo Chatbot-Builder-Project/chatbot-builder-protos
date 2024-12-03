@@ -7,7 +7,7 @@ import "v1/workflows/components/base.proto";
 import "v1/workflows/components/ports.proto";
 
 message NodeBase {
-  VisualComponentBase visual_component_base = 1;
+  v1.workflows.components.VisualComponentBase visual_component_base = 1;
 }
 
 message Node {

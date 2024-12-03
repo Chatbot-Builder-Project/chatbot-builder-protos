@@ -5,7 +5,7 @@ package v1.workflows.components;
 import "v1/workflows/components/base.proto";
 
 message LinkBase {
-  VisualComponentBase visual_component_base = 1;
+  v1.workflows.components.VisualComponentBase visual_component_base = 1;
 }
 
 message Link {

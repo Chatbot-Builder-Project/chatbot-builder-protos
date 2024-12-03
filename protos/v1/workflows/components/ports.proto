@@ -6,7 +6,7 @@ import "v1/shared/data.proto";
 import "v1/workflows/components/base.proto";
 
 message PortBase {
-  VisualComponentBase visual_component_base = 1;
+  v1.workflows.components.VisualComponentBase visual_component_base = 1;
   int32 node_id = 2;
   PortDirection direction = 3;
 
