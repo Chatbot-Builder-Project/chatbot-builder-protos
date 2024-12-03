@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option csharp_namespace = "ChatbotBuilderProtos.V1.Workflows";
+
 package v1.workflows;
 
 import "v1/workflows/components/enum.proto";

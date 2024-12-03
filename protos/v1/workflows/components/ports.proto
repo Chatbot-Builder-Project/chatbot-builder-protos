@@ -1,5 +1,7 @@
 ﻿syntax = "proto3";
 
+option csharp_namespace = "ChatbotBuilderProtos.V1.Workflows.Components";
+
 package v1.workflows.components;
 
 import "v1/shared/data.proto";

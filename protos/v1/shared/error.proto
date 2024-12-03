@@ -1,5 +1,7 @@
 ﻿syntax = "proto3";
 
+option csharp_namespace = "ChatbotBuilderProtos.V1.Shared";
+
 package v1.shared;
 
 message Error {
