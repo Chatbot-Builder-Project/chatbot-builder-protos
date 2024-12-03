@@ -1,0 +1,33 @@
+﻿syntax = "proto3";
+
+package v1.shared;
+
+// Can be used as a field in a message to identify the type of data.
+enum DataType {
+  DATA_TYPE_UNSPECIFIED = 0;
+  TEXT = 1;
+  IMAGE = 2;
+  OPTION = 3;
+}
+
+// The concrete data object that can be used in a message.
+message Data {
+  oneof data {
+    TextData text_data = 1;
+    ImageData image_data = 2;
+    OptionData option_data = 3;
+  }
+}
+
+message TextData {
+  string text = 1;
+}
+
+message ImageData {
+  string url = 1;
+}
+
+message OptionData {
+  int32 enum_id = 1;
+  string option = 2;
+}
