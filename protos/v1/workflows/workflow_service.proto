@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package v1.workflows;
+
+import "v1/shared/responses.proto";
+import "v1/shared/error.proto";
+import "v1/workflows/workflow_requests.proto";
+import "v1/workflows/workflow_responses.proto";
+
+service WorkflowService {
+  rpc ListWorkflows(ListWorkflowRequest) returns (ListWorkflowResult);
+  rpc GetWorkflow(GetWorkflowRequest) returns (GetWorkflowResult);
+  rpc CreateWorkflow(CreateWorkflowRequest) returns (CreateWorkflowResult) {}
+  rpc UpdateWorkflow(UpdateWorkflowRequest) returns (UpdateWorkflowResult) {}
+  rpc DeleteWorkflow(DeleteWorkflowRequest) returns (DeleteWorkflowResult) {}
+}
+
+message ListWorkflowResult {
+  WorkflowListResponse workflows = 1;
+  v1.shared.Error error = 2;
+}
+
+message GetWorkflowResult {
+  oneof result {
+    WorkflowDetailsResponse workflow = 1;
+    v1.shared.Error error = 2;
+  }
+}
+
+message CreateWorkflowResult {
+  oneof result {
+    v1.shared.CreatedResponse created = 1;
+    v1.shared.Error error = 2;
+  }
+}
+
+message UpdateWorkflowResult {
+  oneof result {
+    v1.shared.UpdatedResponse updated = 1;
+    v1.shared.Error error = 2;
+  }
+}
+
+message DeleteWorkflowResult {
+  oneof result {
+    v1.shared.DeletedResponse deleted = 1;
+    v1.shared.Error error = 2;
+  }
+}

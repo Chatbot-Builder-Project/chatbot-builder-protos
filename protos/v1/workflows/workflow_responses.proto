@@ -1,0 +1,25 @@
+﻿syntax = "proto3";
+
+package v1.workflows;
+
+import "google/protobuf/timestamp.proto";
+import "v1/shared/page.proto";
+import "v1/workflows/workflow_components.proto";
+
+message WorkflowResponse {
+  string id = 1;
+  google.protobuf.Timestamp created_at = 2;
+  google.protobuf.Timestamp updated_at = 3;
+  string name = 4;
+  string description = 5;
+}
+
+message WorkflowDetailsResponse {
+  WorkflowResponse workflow = 1;
+  v1.workflows.WorkflowComponents components = 2;
+}
+
+message WorkflowListResponse {
+  v1.shared.PageResponseMeta meta = 1;
+  repeated WorkflowResponse workflows = 2;
+}

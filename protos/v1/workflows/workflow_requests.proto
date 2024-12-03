@@ -1,0 +1,32 @@
+﻿syntax = "proto3";
+
+package v1.workflows;
+
+import "v1/shared/page.proto";
+import "v1/workflows/workflow_components.proto";
+
+message ListWorkflowRequest {
+  v1.shared.PageParams page_params = 1;
+  string search = 2;
+}
+
+message GetWorkflowRequest {
+  string id = 1;
+}
+
+message CreateWorkflowRequest {
+  string name = 1;
+  string description = 2;
+  v1.workflows.WorkflowComponents components = 3;
+}
+
+message UpdateWorkflowRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  v1.workflows.WorkflowComponents components = 4;
+}
+
+message DeleteWorkflowRequest {
+  string id = 1;
+}
