@@ -1,0 +1,14 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ChatbotBuilderProtos.V1.Executor";
+
+package v1.executor;
+
+import "v1/executor/common.proto";
+import "v1/executor/generation.proto";
+import "v1/executor/routing.proto";
+
+service ExecutorService {
+  rpc Generate(GenerationRequest) returns (GenerationResponse) {}
+  rpc Route(RoutingRequest) returns (RoutingResponse) {}
+}

@@ -1,0 +1,26 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ChatbotBuilderProtos.V1.Executor";
+
+package v1.executor;
+
+import "v1/executor/common.proto";
+
+message GenerationOptions {
+  bool use_memory = 1;
+  string response_json_schema = 2;
+}
+
+message GenerationRequest {
+  v1.executor.TextData input = 1;
+  GenerationOptions options = 2;
+}
+
+message GenerationError {
+  string message = 1;
+}
+
+message GenerationResponse {
+  v1.executor.TextData generated_output = 1;
+  GenerationError error = 2;
+}

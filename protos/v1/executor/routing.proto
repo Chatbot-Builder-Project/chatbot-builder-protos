@@ -1,0 +1,22 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ChatbotBuilderProtos.V1.Executor";
+
+package v1.executor;
+
+import "v1/executor/common.proto";
+
+message RoutingRequest {
+  v1.executor.TextData input = 1;
+  repeated v1.executor.OptionData options = 2;
+}
+
+message RoutingError {
+  string message = 1;
+}
+
+message RoutingResponse {
+  v1.executor.OptionData selected_option = 1;
+  bool is_fallback = 2;
+  RoutingError error = 3;
+}

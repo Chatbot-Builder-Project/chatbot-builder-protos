@@ -1,0 +1,13 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ChatbotBuilderProtos.V1.Executor";
+
+package v1.executor;
+
+message TextData {
+  string text = 1;
+}
+
+message OptionData {
+  string option = 1;
+}
